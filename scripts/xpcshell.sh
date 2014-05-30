@@ -4,8 +4,8 @@ B2G_DIR=$(cd `dirname $0`/..; pwd)
 . $B2G_DIR/load-config.sh
 
 VIRTUAL_ENV_VERSION="49f40128a9ca3824ebf253eca408596e135cf893"
-BUSYBOX=$B2G_DIR/gaia/build/busybox-armv6l
-TEST_PACKAGE_STAGE_DIR=$GECKO_OBJDIR/dist/test-package-stage
+BUSYBOX=$B2G_DIR/tools/update-tools/bin/gonk/busybox-armv6l
+TEST_PACKAGE_STAGE_DIR=$GECKO_OBJDIR/dist/test-stage
 TESTING_MODULES_DIR=$TEST_PACKAGE_STAGE_DIR/modules
 
 XPCSHELL_FLAGS+=" --b2gpath $B2G_DIR \
@@ -54,7 +54,7 @@ then
   echo "Using virtual environment in $VENV_DIR"
 else
   echo "Creating a virtual environment in $VENV_DIR"
-  curl https://raw.github.com/pypa/virtualenv/${VIRTUAL_ENV_VERSION}/virtualenv.py | ${PYTHON} - $VENV_DIR
+  curl https://raw.github.com/pypa/virtualenv/${VIRTUAL_ENV_VERSION}/virtualenv.py -L | ${PYTHON} - $VENV_DIR
 fi
 . $VENV_DIR/bin/activate
 
